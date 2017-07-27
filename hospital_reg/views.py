@@ -6,6 +6,6 @@ from django.http import HttpResponse
 
 # Create your views here.
 def hospitalHome(request):
-	return HttpResponse("dsjfdshjkfhsdkfdj")
+	return render(request, 'index.html')
 
 
