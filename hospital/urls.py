@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^', include('doctor.urls')),
     url(r'^', include('patient.urls')),
     
+    
 ]
