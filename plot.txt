@@ -1,0 +1,54 @@
+->Hospitals : 
+	 1. Add Doctor
+	 2. Add Patient
+	 3. Add Cashier
+	 4. Add Lab Head
+ 
+	 Stats:
+	  1. New Patients in last month
+	  2. Current numbers in Hospitals
+	  3. Total Doctors and staff
+  	  4. Progress
+
+-> Doctor
+	1. Appointments
+	2. Patients Tab
+	3. Profile
+	4. Chat 
+	5. Treatment of patients
+
+	Stats/Main Page:
+	 1. Top 10 Patients
+	 	on hover - 
+	 	 1. Chat
+	 	 2. History 
+	 	 3. Reports  
+	 	 --> show +1 type notifications if any
+	 2. Doctor to Doctor Chat
+
+
+-> Patient
+	1. Appointments
+	2. Reports
+	3. Chat
+	4. Search
+	5. Payment
+	6. Medicine
+	7. Mediclaims
+	8. Blood Bank
+	9. Disease Prediction ****
+	10. Meal-Room Bookings (MMT)
+
+
+
+-> Cashier
+	1. Bill Generate
+	2. Fee Distribution
+	3. Mediclaims
+
+
+
+-> Lab Head  
+	1. Upload reports 
+	2. Check resources
+	
