@@ -161,3 +161,13 @@ def hos_reg_complete(request,p):
     #     up=User.objects.get(password=p)
     #     print up
     #     return render(request,'changepass.html',{ 'user':up })
+
+
+def base(request):
+	return render(request,'base.html')
+
+
+
+
+
+	
