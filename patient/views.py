@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import urllib, json
+
+
+
+
 # Create your views here.
+
 def search(request):
 	if request.method == 'POST':
 		name = request.POST['name']
@@ -20,3 +26,11 @@ def search(request):
 	else:
 		
 		return render(request,'search.html')
+
+
+def bloodBank(request):
+	with open('patient/bloodbank.json', 'r') as f:
+		hdata = json.load(f)
+		print hdata
+	return render(request,'bloodBank.html',hdata)
+

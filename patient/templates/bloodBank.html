@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+<style type="text/css">
+    body {
+        background-image: url({% static 'assets/images/background.jpeg' %});
+    }
+</style>
+<!-- ====================================================
+            ================= CONTENT ===============================
+            ===================================================== -->
+<div id="wrap" class="animsition" style="animation-duration: 1.5s; opacity: 1;">
+    <div class="page page-gallery">
+
+        <div class="pageheader">
+
+            <h2>Blood Reserves</h2>
+            <h3><span>Showing all major <strong>Blood Banks</strong> across India</span></h3>
+            <div class="page-bar">
+
+                <ul class="page-breadcrumb">
+                    <li>
+                        <a href="index.html"><i class="fa fa-home"></i> Home</a>
+                    </li>
+                    <li>
+                        <a href="gallery.html">Blood Bank</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+    <div class="container" >
+        <div class="row">
+        {% for bank in data %}
+            <div class="col-sm-2 col-md-3 col-lg-4">                    
+                <div class="well" style="padding: 2em;">
+                    <table style="width:100%;">
+                        <tbody>      
+                            <tr>    
+                                <td>
+                                    <h3>
+                                        {{ bank[4] }}
+                                    </h3>
+                                    <p>
+                                        <span class="label label-success">Published</span>
+                                        <br>113 papers published <br>
+                                        Notify Me Count: 0 
+                                    </p>
+                                </td>
+                            
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+        <!--/ CONTENT -->
+
+
+{% endblock %}

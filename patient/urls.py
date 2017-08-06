@@ -3,5 +3,6 @@ from patient import views
 urlpatterns = [
 	url(r'^search/', views.search)	
 
-
+	url(r'^blood_bank/', views.bloodBank),
+	
 ]
