@@ -31,6 +31,7 @@ def search(request):
 def bloodBank(request):
 	with open('patient/bloodbank.json', 'r') as f:
 		hdata = json.load(f)
-		print hdata
-	return render(request,'bloodBank.html',hdata)
+		a = hdata['data']
+		print a
+	return render(request,'bloodBank.html',{"a":a})
 
