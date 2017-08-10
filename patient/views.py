@@ -23,6 +23,9 @@ def search(request):
 	else:		
 		return render(request,'search.html')
 
+def appointment(request):
+	return render(request, 'appointment.html')
+
 def bloodBank(request):
 	with open('patient/bloodbank.json', 'r') as f:
 		hdata = json.load(f)
