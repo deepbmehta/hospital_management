@@ -15,7 +15,11 @@ def search(request):
 		url = "https://api.betterdoctor.com/2016-03-01/doctors?first_name="+name+"&specialty_uid="+types+"&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&sort=full-name-asc&skip=0&limit=10&user_key=056686b82961deed0c023cc2de74ce3f"
 		response = urllib.urlopen(url)
 		data = json.loads(response.read())
-		print data['data']
+		print data['data'][0]['insurances']
+		for item in data['data']:
+			print "Fsdfsdfsdfsdfsdfsdf"
+			del item['insurances']
+			print item
 		context = {
 		"data":data['data']
 		} 
@@ -39,3 +43,4 @@ def bloodBank(request):
 	except EmptyPage:
 		a = paginator.page(paginator.num_pages)
 	return render(request,'bloodBank.html',{"a":a})
+
