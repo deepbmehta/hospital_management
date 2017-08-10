@@ -10,7 +10,7 @@
 <!-- ====================================================
             ================= CONTENT ===============================
             ===================================================== -->
-<div id="wrap" class="animsition" style="animation-duration: 1.5s; opacity: 1;">
+<div id="wrap"  class="animsition" style="animation-duration: 10s; opacity: 1;">
     <div class="page page-gallery">
 
         <div class="pageheader">
@@ -47,7 +47,7 @@
                                     <br>
                                     <div class="row" style="width: 80%;">
                                         <div class="col-md-8">
-                                           <h5><strong>{{ bank.3 }}<h5><strong>
+                                           <h5><strong>{{ bank.3 }}</h5></strong>
                                             <h4><strong>{{ bank.1 }}</strong></h4>    
                                         </div>
                                         <div class="col-md-4">
@@ -63,7 +63,30 @@
         {% endfor %}
         </div>
     </div>
-</div>
-        <!--/ CONTENT -->
 
+        <!--/ CONTENT -->
+    <center>
+    {% if a.has_other_pages %}
+      <ul class="pagination">
+        {% if a.has_previous %}
+          <li><a href="?page={{ a.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in a.paginator.page_range %}
+          {% if a.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if a.has_next %}
+          <li><a href="?page={{ a.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+      </ul>
+    {% endif %}
+    </center>
+</div>
 {% endblock %}

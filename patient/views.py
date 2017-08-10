@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import urllib, json
@@ -24,5 +26,13 @@ def search(request):
 def bloodBank(request):
 	with open('patient/bloodbank.json', 'r') as f:
 		hdata = json.load(f)
-		a = hdata['data']
+		all = hdata['data']
+	page = request.GET.get('page', 1)
+	paginator = Paginator(all, 90)
+	try:
+		a = paginator.page(page)
+	except PageNotAnInteger:
+		a = paginator.page(1)
+	except EmptyPage:
+		a = paginator.page(paginator.num_pages)
 	return render(request,'bloodBank.html',{"a":a})
