@@ -41,3 +41,7 @@ def bloodBank(request):
 		a = paginator.page(paginator.num_pages)
 	return render(request,'bloodBank.html',{"a":a})
 
+
+def payment(request):
+	return render(request,'payment.html')	
+
