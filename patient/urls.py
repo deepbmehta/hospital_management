@@ -4,5 +4,6 @@ urlpatterns = [
 	url(r'^search/', views.search),	
 	url(r'^appointment/', views.appointment),	
 	url(r'^blood_bank/', views.bloodBank),
+	url(r'^payment/', views.payment),
 	
 ]

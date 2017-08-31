@@ -31,11 +31,11 @@
 	1. Appointments
 	2. Reports
 	3. Chat
-	4. Search
+	/4. Search
 	5. Payment
 	6. Medicine
 	7. Mediclaims
-	8. Blood Bank
+	//8. Blood Bank
 	9. Disease Prediction ****
 	10. Meal-Room Bookings (MMT)
 
