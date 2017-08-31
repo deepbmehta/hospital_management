@@ -1,225 +1,175 @@
-{% extends 'base1.html' %}
+
 {% load static %}
 
-{% block content %}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<html lang="en" class="no-js">
+<style type="text/css">
+  @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #43A047;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+body {
+  background: #76b852; /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+  background: -moz-linear-gradient(right, #76b852, #8DC26F);
+  background: -o-linear-gradient(right, #76b852, #8DC26F);
+  background: linear-gradient(to left, #76b852, #8DC26F);
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+  
+</style>
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <!-- remember, jQuery is completely optional -->
+  <!-- <script type='text/javascript' src='js/jquery-1.11.1.min.js'></script> -->
+  <script type='text/javascript' src="{% static 'jquery.particleground.js' %}"></script>
+  <!-- <script type='text/javascript' src="{% static 'jquery.particleground.min.js' %}"></script> -->
+
+  <script type='text/javascript' src="{% static 'demo.js' %}"></script>
+</head>
+
+<body>
+
+<div id="particles">
+  <div id="intro">
+    <div class="login-page">
+  <div class="form">
+   <h2 style="color:black;">Log In</h2>
+    <div style="color:black;">{{error}}</div>
+   
+    <form class="login-form" action="/login/" method="POST">
+    {% csrf_token %}
+      <input type="email" placeholder="email" name="email"/>
+      <input type="password" placeholder="password" name="password"/>
+<button type="submit">Login</button>     
+ <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div
+  </div>
+</div>
 
 
-
-    <head>
-
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Minovate - Admin Dashboard</title>
-        <link rel="icon" type="image/ico" href="assets/images/favicon.ico" />
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-
-
-        <!-- ============================================
-        ================= Stylesheets ===================
-        ============================================= -->
-        <!-- vendor css files -->
-        <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/vendor/animate.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/css/vendor/font-awesome.min.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/js/vendor/animsition/css/animsition.min.css' %}">
-
-        <!-- project main css files -->
-        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
-        <!--/ stylesheets -->
-
-
-
-        <!-- ==========================================
-        ================= Modernizr ===================
-        =========================================== -->
-        <script src="{% static 'assets/js/vendor/modernizr/modernizr-2.8.3-respond-1.4.2.min.js' %}"></script>
-        <!--/ modernizr -->
-
-
-
-
-    </head>
-
-
-
-
-
-    <body id="minovate" class="appWrapper">
-
-
-
-
-
-
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- ====================================================
-        ================= Application Content ===================
-        ===================================================== -->
-        <div id="wrap" class="animsition">
-
-
-
-
-            <div  class="page page-core page-login" style=" left : 0px;">
-
-                <div class="text-center"><h3 class="text-light text-white"><span class="text-lightred">S</span>HIPEASY</h3></div>
-
-                <div class="container w-420 p-15 bg-white mt-40 text-center">
-
-
-                    <h2 class="text-light text-greensea">Log In</h2>
-                    <div>{{error}}</div>
-
-                    <form name="form" class="form-validation mt-20" novalidate="" action="/login/" method="POST">
-                          {% csrf_token %}
-                        <div class="form-group">
-                            <input type="email" class="form-control underline-input" placeholder="Email" name = "email">
-                        </div>
-
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control underline-input" name= "password">
-                        </div>
-
-                        <div class="form-group text-left mt-20">
-                            <button class="btn btn-greensea b-0 br-2 mr-5" type="submit">Login</button>
-                            <label class="checkbox checkbox-custom-alt checkbox-custom-sm inline-block">
-                                <input type="checkbox"><i></i> Remember me
-                            </label>
-                            <a href="forgotpass.html" class="pull-right mt-10">Forgot Password?</a>
-                        </div>
-
-                    </form>
-
-                    <hr class="b-3x">
-<!--
-                    <div class="social-login text-left">
-
-                        <ul class="pull-right list-unstyled list-inline">
-                            <li class="p-0">
-                                <a class="btn btn-sm btn-primary b-0 btn-rounded-20" href="javascript:;"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li class="p-0">
-                                <a class="btn btn-sm btn-info b-0 btn-rounded-20" href="javascript:;"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li class="p-0">
-                                <a class="btn btn-sm btn-lightred b-0 btn-rounded-20" href="javascript:;"><i class="fa fa-google-plus"></i></a>
-                            </li>
-                            <li class="p-0">
-                                <a class="btn btn-sm btn-primary b-0 btn-rounded-20" href="javascript:;"><i class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
-
-                        <h5>Or login with</h5>
-
-                    </div>-->
-
-                    <!--<div class="bg-slategray lt wrap-reset mt-40">
-                        <p class="m-0">
-                            <a href="signup.html" class="text-uppercase">Create an account</a>
-                        </p>
-                    </div>-->
-
-                </div>
-
-            </div>
-
-
-
-        </div>
-        <!--/ Application Content -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- ============================================
-        ============== Vendor JavaScripts ===============
-        ============================================= -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery/jquery-1.11.2.min.js"><\/script>')</script>
-
-        <script src="{% static 'assets/js/vendor/bootstrap/bootstrap.min.js' %}"></script>
-
-        <script src="{% static 'assets/js/vendor/jRespond/jRespond.min.js' %}"></script>
-
-        <script src="{% static 'assets/js/vendor/sparkline/jquery.sparkline.min.js' %}"></script>
-
-        <script src="{% static 'assets/js/vendor/slimscroll/jquery.slimscroll.min.js' %}"></script>
-
-        <script src="{% static 'assets/js/vendor/animsition/js/jquery.animsition.min.js' %}"></script>
-
-        <script src="{% static 'assets/js/vendor/screenfull/screenfull.min.js' %}"></script>
-        <!--/ vendor javascripts -->
-
-
-
-
-        <!-- ============================================
-        ============== Custom JavaScripts ===============
-        ============================================= -->
-        <script src="{% static 'assets/js/main.js' %}"></script>
-        <!--/ custom javascripts -->
-
-
-
-
-
-
-        <!-- ===============================================
-        ============== Page Specific Scripts ===============
-        ================================================ -->
-        
-        <!--/ Page Specific Scripts -->
-
-
-
-
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='https://www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-        </script>
-
-    </body>
 </html>
 
-{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
