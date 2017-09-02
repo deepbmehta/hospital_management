@@ -1,4 +1,0 @@
-# HTTrack Website Copier Cookie File
-# This file format is compatible with Netscape cookies
-.thememinister.com	TRUE	/	FALSE	1999999999	__cfduid	d86befcbf8778d62fe990803a946b233d1504197411
-
