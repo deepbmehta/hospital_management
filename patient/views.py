@@ -35,7 +35,7 @@ def bloodBank(request):
 		hdata = json.load(f)
 		all = hdata['data']
 	page = request.GET.get('page', 1)
-	paginator = Paginator(all, 90)
+	paginator = Paginator(all, 92)
 	try:
 		a = paginator.page(page)
 	except PageNotAnInteger:
