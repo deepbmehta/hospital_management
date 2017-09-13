@@ -14,8 +14,14 @@ class doctor(models.Model):
 	d_work_exp = models.IntegerField()
 	d_degree = models.CharField(max_length = 1000)
 	d_salary = models.IntegerField()
+	d_gender = models.CharField(max_length = 10)
 	user_id = models.ForeignKey(User)
-	hospital_id = models.ForeignKey(hospital, on_delete = models.CASCADE)
+	d_hospital_id = models.ForeignKey(hospital, on_delete = models.CASCADE)
+
+	def __str__(self):
+		return self.d_name
+
+
 
 
 	#image-profilepic

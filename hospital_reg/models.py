@@ -19,6 +19,10 @@ class hospital(models.Model):
 	hos_weblink = models.CharField(max_length = 100,null=True,blank = True)
 	user_id = models.ForeignKey(User)
 	
+
+	def __str__(self):
+		return self.hos_name
+	
 # Create your models here.
 
 

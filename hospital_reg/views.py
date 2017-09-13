@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from hospital_reg.models import *
+from doctor.models import *
 from django.contrib.auth import authenticate,login,logout
 import smtplib
 import re
@@ -14,8 +15,9 @@ from email.MIMEText import MIMEText
 import datetime
 
 
+
 # Create your views here.
-def hospitalHome(request):
+def homepage(request):
 	return render(request, 'index.html')
 
 
@@ -28,7 +30,7 @@ def login_site(request):
 		if user:
 			login(request, user)
 			if user_type.objects.get(user_detail = request.user).types == 1:
-				return HttpResponse("You are an hospital")
+				return redirect('/hospitalHome/')
 			if user_type.objects.get(user_detail = request.user).types == 2:
 				return HttpResponse("You are a doctor")
 			if user_type.objects.get(user_detail = request.user).types == 3:
@@ -163,9 +165,80 @@ def hos_reg_complete(request,p):
     #     return render(request,'changepass.html',{ 'user':up })
 
 
-def base(request):
-	return render(request,'base.html')
+def hospitalHome(request):
+	if request.user.is_authenticated():
+		a = hospital.objects.get(user_id = request.user)
+		print a
+		context = {
+		"hos_details":a
+		}
 
+		return render(request,'hospitalHome.html',context)
+	else:
+		return redirect('/login/')	
+
+
+def addDoctors(request):
+	if request.user.is_authenticated():
+		if request.method == "POST":
+			name = request.POST['doctorname']
+			gender = request.POST['gender']
+			speciality = request.POST['speciality']
+			phone = request.POST['phone']
+			email = request.POST['email']
+			address = request.POST['address']
+			workexp = request.POST['workexp']
+			degree = request.POST['degree']
+			salary = request.POST['salary']
+			
+
+			hash = hashlib.sha1()
+			now = datetime.datetime.now()
+			hash.update(str(now)+email+'game_of_thrones')
+			tp=hash.hexdigest()
+
+
+			a = hospital.objects.get(user_id = request.user)
+			print a
+			user=User.objects.create(username=email,password=tp)
+			user.save()
+
+			doc = doctor.objects.create(d_name = name,d_email = email,d_phone_no = phone,d_address = address,d_spec = speciality,d_work_exp = workexp,d_degree = degree,d_salary = salary,d_gender = gender,user_id = user,d_hospital_id = a)
+			doc.save()
+
+			utype = user_type.objects.create(user_detail=request.user,types=2)
+			utype.save()
+      
+
+
+			# fromaddr=usermail
+			# toaddr=email
+			# msg=MIMEMultipart()
+			# msg['From']=fromaddr
+			# msg['To']=toaddr
+			# msg['Subject']='Confirmational Email'
+			# domain = request.get_host()
+			# scheme = request.is_secure() and "https" or "http"
+			# body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
+			# part1 = MIMEText(body, 'plain')
+			# msg.attach(MIMEText(body, 'plain'))
+			# server = smtplib.SMTP('smtp.gmail.com', 587)
+			# server.starttls()
+			# server.login(fromaddr, upassword)
+			# text = msg.as_string()
+			# server.sendmail(fromaddr, toaddr, text)
+			# server.quit()
+
+			return HttpResponse('Check your mail box to confirm')
+			
+		else:
+			a = hospital.objects.get(user_id = request.user)
+			print a
+			context = {
+			"hos_details":a
+			}
+
+			return render(request,'addDoctors.html',context)	
 
 
 
