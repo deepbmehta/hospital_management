@@ -5,6 +5,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 import urllib, json
 from django.contrib.auth.models import User
+from hospital_reg.models import *
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def search(request):
@@ -47,3 +48,20 @@ def bloodBank(request):
 def payment(request):
 	return render(request,'payment.html')	
 
+
+def patientHome(request):
+	if request.user.is_authenticated():
+		if user_type.objects.get(user_detail = request.user).types == 3:
+			p = hospital.objects.get(user_id = request.user)
+			print p
+
+			context = {
+			"p_details":p
+
+			}
+
+			return render(request,'patientHome.html',context)
+		else:
+			return HttpResponse("You are not allowed")
+	else:
+		return redirect('/login/')	

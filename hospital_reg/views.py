@@ -12,6 +12,7 @@ import hashlib
 from email.MIMEMultipart import MIMEMultipart
 from hospital_reg.safe import usermail,upassword
 from email.MIMEText import MIMEText
+#from patient.views import patientHome
 import datetime
 
 
@@ -32,7 +33,7 @@ def login_site(request):
 			if user_type.objects.get(user_detail = request.user).types == 1:
 				return redirect('/hospitalHome/')
 			if user_type.objects.get(user_detail = request.user).types == 2:
-				return HttpResponse("You are a doctor")
+				return redirect('/patientHome/')
 			if user_type.objects.get(user_detail = request.user).types == 3:
 				return HttpResponse("You are a patient")
 			if user_type.objects.get(user_detail = request.user).types == 4:
@@ -206,7 +207,7 @@ def addDoctors(request):
 			doc = doctor.objects.create(d_name = name,d_email = email,d_phone_no = phone,d_address = address,d_spec = speciality,d_work_exp = workexp,d_degree = degree,d_salary = salary,d_gender = gender,user_id = user,d_hospital_id = a)
 			doc.save()
 
-			utype = user_type.objects.create(user_detail=request.user,types=2)
+			utype = user_type.objects.create(user_detail=user,types=2)
 			utype.save()
       
 
