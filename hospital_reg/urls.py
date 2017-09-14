@@ -9,6 +9,7 @@ urlpatterns = [
 	url(r'^(?P<p>[\w\-\_]+)/changepass/$', views.hos_reg_complete),
 	url(r'^hospitalHome/$', views.hospitalHome),
 	url(r'^addDoctors/$', views.addDoctors),
+	url(r'^addPatients/$', views.addPatients),
 
 
 

@@ -240,6 +240,77 @@ def addDoctors(request):
 
 			return render(request,'addDoctors.html',context)	
 
+def addPatients(request):
+	if request.user.is_authenticated():
+		if request.method == "POST":
+			name = request.POST['patientname']
+			dob = request.POST['dateofbirth']
+			age = request.POST['age']
+			gender = request.POST['select']
+			phone = request.POST['phone']
+			email = request.POST['email']
+			address = request.POST['address']
+			bloodgrp = request.POST['selectbg']
+			doctor = request.POST['selectdoctor']
+			#photo = request.POST['']			
+
+			hash = hashlib.sha1()
+			now = datetime.datetime.now()
+			hash.update(str(now)+email+'game_of_thrones')
+			tp=hash.hexdigest()
+
+
+			a = hospital.objects.get(user_id = request.user)
+			print a
+			user=User.objects.create(username=email,password=tp)
+			user.save()
+
+			pat = patient.objects.create(p_name = name,
+								p_email = email,
+								p_phone_no = phone,
+								p_address = address,
+								p_gender = gender,
+								# p_dateofbirth = dob,
+								p_age = age,
+								p_bloodgrp = bloodgrp,
+								p_doctor = doctor,
+								user_id = user,
+								p_hospital_id = a)
+			pat.save()
+
+			utype = user_type.objects.create(user_detail=request.user,types=3)
+			utype.save()
+      
+
+
+			# fromaddr=usermail
+			# toaddr=email
+			# msg=MIMEMultipart()
+			# msg['From']=fromaddr
+			# msg['To']=toaddr
+			# msg['Subject']='Confirmational Email'
+			# domain = request.get_host()
+			# scheme = request.is_secure() and "https" or "http"
+			# body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
+			# part1 = MIMEText(body, 'plain')
+			# msg.attach(MIMEText(body, 'plain'))
+			# server = smtplib.SMTP('smtp.gmail.com', 587)
+			# server.starttls()
+			# server.login(fromaddr, upassword)
+			# text = msg.as_string()
+			# server.sendmail(fromaddr, toaddr, text)
+			# server.quit()
+
+			return HttpResponse('Check your mail box to confirm')
+			
+		else:
+			a = hospital.objects.get(user_id = request.user)
+			print a
+			context = {
+			"hos_details":a
+			}
+
+			return render(request,'addPatients.html',context)	
 
 
 
