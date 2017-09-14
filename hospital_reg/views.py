@@ -206,7 +206,7 @@ def addDoctors(request):
 			doc = doctor.objects.create(d_name = name,d_email = email,d_phone_no = phone,d_address = address,d_spec = speciality,d_work_exp = workexp,d_degree = degree,d_salary = salary,d_gender = gender,user_id = user,d_hospital_id = a)
 			doc.save()
 
-			utype = user_type.objects.create(user_detail=request.user,types=2)
+			utype = user_type.objects.create(user_detail=user,types=2)
 			utype.save()
       
 
