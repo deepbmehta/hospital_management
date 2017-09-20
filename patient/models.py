@@ -19,3 +19,5 @@ class patient(models.Model):
 	doctor_id = models.ManyToManyField(doctor)
 	bill_amt = models.BigIntegerField(null=True, blank=True)
 
+	def __str__(self):
+		return self.p_name

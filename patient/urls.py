@@ -6,6 +6,8 @@ urlpatterns = [
 	url(r'^blood_bank/', views.bloodBank),
 	url(r'^payment/', views.payment),
 	url(r'^patientHome/', views.patientHome),
+	url(r'^chat/', views.chat),
+
 
 	
 ]
