@@ -7,6 +7,8 @@ import urllib, json
 from django.contrib.auth.models import User
 from hospital_reg.models import *
 from patient.models import *
+from doctor.models import *
+
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -79,3 +81,18 @@ def patientHome(request):
 			return HttpResponse("You are not allowed")
 	else:
 		return redirect('/login/')	
+
+def chat(request):
+	p = patient.objects.get(user_id = request.user)
+	print p.hospital_id
+	d = doctor.objects.filter(d_hospital_id = p.hospital_id)
+	print d
+
+
+	context = {
+	"p_details":p,
+	"d_list":d,
+	}
+	return render(request,'chat.html',context)
+
+

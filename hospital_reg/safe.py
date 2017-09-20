@@ -12,3 +12,12 @@ upassword = "deepgaurav"
 
 # better-doctor-api
 # 056686b82961deed0c023cc2de74ce3f
+
+#twilio
+#dghos1997@gmail.com
+#deepgaurav1997
+# account sid = ACcaac3a137876d89eb97d8fb43890982c
+# auth token = 3a79b55de825e098bfe3ea0310da0fe9
+
+# vidyo.io
+# password = Deepgaurav1997

@@ -13,10 +13,12 @@ class patient(models.Model):
 	p_address = models.CharField(max_length = 1000)
 	p_gender = models.CharField(max_length = 1000)
 	p_bloodgrp = models.CharField(max_length = 1000)
-	p_doctor = models.CharField(max_length = 1000)
-	# p_dateofbirth = models.CharField(max_length = 1000)
+	#p_doctor = models.CharField(max_length = 1000)
+	p_dateofbirth = models.DateField()
 	user_id = models.ForeignKey(User)
 	hospital_id = models.ForeignKey(hospital,on_delete = models.CASCADE)
 	doctor_id = models.ManyToManyField(doctor)
 	bill_amt = models.BigIntegerField()
 
+	def __str__(self):
+		return self.p_name
