@@ -5,6 +5,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from hospital_reg.models import *
 from doctor.models import *
+from patient.models import *
 from django.contrib.auth import authenticate,login,logout
 import smtplib
 import re
@@ -245,14 +246,14 @@ def addPatients(request):
 	if request.user.is_authenticated():
 		if request.method == "POST":
 			name = request.POST['patientname']
-			dob = request.POST['dateofbirth']
+			# dob = request.POST['dateofbirth']
 			age = request.POST['age']
-			gender = request.POST['select']
+			gender = request.POST['gender']
 			phone = request.POST['phone']
 			email = request.POST['email']
 			address = request.POST['address']
 			bloodgrp = request.POST['selectbg']
-			doctor = request.POST['selectdoctor']
+			# doctor = request.POST['selectdoctor']
 			#photo = request.POST['']			
 
 			hash = hashlib.sha1()
@@ -265,20 +266,19 @@ def addPatients(request):
 			print a
 			user=User.objects.create(username=email,password=tp)
 			user.save()
-
-			pat = patient.objects.create(p_name = name,
-								p_email = email,
-								p_phone_no = phone,
-								p_address = address,
-								p_gender = gender,
-								# p_dateofbirth = dob,
+			pat = patient.objects.create(
+								p_name = name,
 								p_age = age,
+								p_gender = gender,
+								p_phone_no = phone,
+								p_email = email,
+								p_address = address,
+								# p_dateofbirth = dob,
 								p_bloodgrp = bloodgrp,
-								p_doctor = doctor,
+								# p_doctor = doctor,
 								user_id = user,
-								p_hospital_id = a)
+								hospital_id = a)
 			pat.save()
-
 			utype = user_type.objects.create(user_detail=request.user,types=3)
 			utype.save()
       
