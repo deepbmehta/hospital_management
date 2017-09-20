@@ -234,7 +234,7 @@
                         <li class="dropdown dropdown-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img alt="" class="img-circle " src="{% static 'assets/imgdp.svg" />
-                                <span class="username username-hide-on-mobile"> Kiran </span>
+                                <span class="username username-hide-on-mobile"> {{p_details.p_name}} </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-default">
@@ -315,12 +315,12 @@
                                 <span class="title">Appointments</span></a>
                             </li>
                             <li class="nav-item  ">
-                                <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
+                                <a href="/search/" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
                                     <span class="title">Search</span>
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a href="#" class="nav-link nav-toggle"> <i class="fa fa-users"></i>
+                                <a href="/blood_bank/" class="nav-link nav-toggle"> <i class="fa fa-users"></i>
                                     <span class="title">Blood Bank</span>
                                 </a>
                             </li>

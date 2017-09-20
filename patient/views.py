@@ -6,6 +6,8 @@ from django.http import HttpResponse
 import urllib, json
 from django.contrib.auth.models import User
 from hospital_reg.models import *
+from patient.models import *
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def search(request):
@@ -31,18 +33,30 @@ def appointment(request):
 	return render(request, 'appointment.html')
 
 def bloodBank(request):
-	with open('patient/bloodbank.json', 'r') as f:
-		hdata = json.load(f)
-		all = hdata['data']
-	page = request.GET.get('page', 1)
-	paginator = Paginator(all, 92)
-	try:
-		a = paginator.page(page)
-	except PageNotAnInteger:
-		a = paginator.page(1)
-	except EmptyPage:
-		a = paginator.page(paginator.num_pages)
-	return render(request,'bloodBank.html',{"a":a})
+	if request.user.is_authenticated():
+		with open('patient/bloodbank.json', 'r') as f:
+			hdata = json.load(f)
+			all = hdata['data']
+		page = request.GET.get('page', 1)
+		p = patient.objects.get(user_id = request.user)
+		print p
+
+		
+		paginator = Paginator(all, 92)
+		try:
+			a = paginator.page(page)
+		except PageNotAnInteger:
+			a = paginator.page(1)
+		except EmptyPage:
+			a = paginator.page(paginator.num_pages)
+		context = {
+		"p_details":p,
+		"a":a,
+
+		}	
+		return render(request,'bloodBank.html',context)
+	else:
+		return redirect('/login/')	
 
 
 def payment(request):
@@ -52,7 +66,7 @@ def payment(request):
 def patientHome(request):
 	if request.user.is_authenticated():
 		if user_type.objects.get(user_detail = request.user).types == 3:
-			p = hospital.objects.get(user_id = request.user)
+			p = patient.objects.get(user_id = request.user)
 			print p
 
 			context = {
