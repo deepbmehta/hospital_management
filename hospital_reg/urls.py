@@ -10,6 +10,8 @@ urlpatterns = [
 	url(r'^hospitalHome/$', views.hospitalHome),
 	url(r'^addDoctors/$', views.addDoctors),
 	url(r'^addPatients/$', views.addPatients),
+	url(r'^addLabHead/$', views.addLabHead),
+	url(r'^addCashier/$', views.addCashier),
 
 
 
