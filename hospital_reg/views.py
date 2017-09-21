@@ -247,8 +247,9 @@ def addDoctors(request):
 def addPatients(request):
 	if request.user.is_authenticated():
 		if request.method == "POST":
+			print request.POST['dateofbirth']
 			name = request.POST['patientname']
-			# dob = request.POST['dateofbirth']
+			dob = request.POST['dateofbirth']
 			age = request.POST['age']
 			gender = request.POST['gender']
 			phone = request.POST['phone']
@@ -275,7 +276,7 @@ def addPatients(request):
 								p_phone_no = phone,
 								p_email = email,
 								p_address = address,
-								# p_dateofbirth = dob,
+								p_dateofbirth = dob,
 								p_bloodgrp = bloodgrp,
 								# p_doctor = doctor,
 								user_id = user,
@@ -424,3 +425,18 @@ def addCashier(request):
 			"hos_details":a
 			}
 			return render(request,'addLabHead.html',context)	
+
+def all_patients(request):
+	patients = patient.objects.all()
+	context = {
+		'patients' : patients
+	}
+	return render(request, 'all_patients.html', context)
+
+def all_doctors(request):
+	doctors = doctor.objects.all()
+	context = {
+		'doctors' : doctors
+	}
+	return render(request, 'all_doctors.html', context)
+

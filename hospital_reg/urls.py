@@ -12,6 +12,8 @@ urlpatterns = [
 	url(r'^addPatients/$', views.addPatients),
 	url(r'^addLabHead/$', views.addLabHead),
 	url(r'^addCashier/$', views.addCashier),
+	url(r'^all_patients/$', views.all_patients),
+	url(r'^all_doctors/$', views.all_doctors),
 
 
 
