@@ -46,7 +46,7 @@
                                 <div class="card-head">
                                 </div>
                                 <div class="card-body" id="bar-parent">
-                                <form class="form-horizontal" action="#" id="submit_form" method="POST">
+                                <form class="form-horizontal" action="/addPatients/" id="submit_form" method="POST">{% csrf_token %}
                                         <div class="form-wizard">
                                             <div class="form-body">
                                                 <ul class="nav nav-pills nav-justified steps">
@@ -57,14 +57,6 @@
                                                                     Basic</span>
                                                         </a>
                                                     </li>
-                                                     <li>
-                                                        <a href="#tab2" data-toggle="tab" class="step active">
-                                                            <span class="number"> 2 </span>
-                                                            <span class="desc">
-                                                                    Assign Doctor </span>
-                                                        </a>
-                                                    </li>
-                                                    
                                                 </ul>
                                                 <div id="bar" class="progress progress-striped" role="progressbar">
                                                     <div class="progress-bar progress-bar-info"> </div>
@@ -97,10 +89,10 @@
 			                                                    <span class="required"> * </span>
 			                                                </label>
 			                                                <div class="col-md-5">
-			                                                    <select class="form-control input-height" name="select">
+			                                                    <select class="form-control input-height" name="gender">
 			                                                        <option value="">Select...</option>
-			                                                        <option value="Category 1">Male</option>
-			                                                        <option value="Category 2">Female</option>
+			                                                        <option value="Male">Male</option>
+			                                                        <option value="Female">Female</option>
 			                                                    </select>
 			                                                </div>
 			                                            </div>
@@ -148,51 +140,42 @@
                                                             <div class="col-md-5">
                                                                 <select class="form-control input-height" name="selectbg">
                                                                     <option value="">Select...</option>
-                                                                    <option value="Category 1">A+</option>
-                                                                    <option value="Category 2">A-</option>
-                                                                    <option value="Category 3">B+</option>
-                                                                    <option value="Category 4">B-</option>
-                                                                    <option value="Category 5">AB+</option>
-                                                                    <option value="Category 6">AB-</option>
-                                                                    <option value="Category 7">O+</option>
-                                                                    <option value="Category 8">O-</option>  
+                                                                    <option value="A+">A+</option>
+                                                                    <option value="A-">A-</option>
+                                                                    <option value="B+">B+</option>
+                                                                    <option value="B-">B-</option>
+                                                                    <option value="AB+">AB+</option>
+                                                                    <option value="AB-">AB-</option>
+                                                                    <option value="O+">O+</option>
+                                                                    <option value="O-">O-</option>  
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tab-pane" id="tab2">
-                                                        <h3 class="block">Provide Doctor details</h3>
                                                         <div class="form-group">
-			                                                <label class="control-label col-md-3">Assign Doctor
-			                                                    <span class="required"> * </span>
-			                                                </label>
-			                                                <div class="col-md-5">
-			                                                    <select class="form-control input-height" name="selectdoctor">
-			                                                        <option value="">Select...</option>
-			                                                        <option value="Category 1">Dr.Rajesh</option>
-			                                                        <option value="Category 2">Dr.Pooja Patel</option>
-			                                                        <option value="Category 3">Dr.Sarah Smith</option>
-			                                                        <option value="Category 4">Dr.John Deo</option>
-			                                                        <option value="Category 5">Dr.Jay Soni</option>
-			                                                        <option value="Category 6">Dr.Jacob Ryan</option>
-			                                                        <option value="Category 7">Dr.Megha Trivedi</option>
-			                                                    </select>
-			                                                </div>
-			                                            </div>
+                                                            <label class="control-label col-md-3">Assign Doctor
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <select class="form-control input-height" name="selectdoctor">
+                                                                    <option value="">Select...</option>
+                                                                    <option value="Category 1">Dr.Rajesh</option>
+                                                                    <option value="Category 2">Dr.Pooja Patel</option>
+                                                                    <option value="Category 3">Dr.Sarah Smith</option>
+                                                                    <option value="Category 4">Dr.John Deo</option>
+                                                                    <option value="Category 5">Dr.Jay Soni</option>
+                                                                    <option value="Category 6">Dr.Jacob Ryan</option>
+                                                                    <option value="Category 7">Dr.Megha Trivedi</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-actions">
                                                 <div class="row">
                                                     <div class="col-md-offset-3 col-md-9">
-                                                        <a href="javascript:;" class="btn btn-outline green-bgcolor  button-previous">
-                                                            <i class="fa fa-angle-left"></i> Previous </a>
-                                                        <a href="javascript:;" class="btn btn-outline green-bgcolor button-next"> Next
-                                                                <i class="fa fa-angle-right"></i>
-                                                            </a>
-                                                        <a href="javascript:;" class="btn btn-outline green-bgcolor button-submit"> Finish
-                                                                <i class="fa fa-check"></i>
-                                                            </a>
+                                                        <button type="submit" class="btn btn-outline green-bgcolor button-submit"> Finish <i class="fa fa-check"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>

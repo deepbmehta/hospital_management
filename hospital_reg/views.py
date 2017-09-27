@@ -5,6 +5,9 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from hospital_reg.models import *
 from doctor.models import *
+from patient.models import *
+from labhead.models import *
+from cashier.models import *
 from django.contrib.auth import authenticate,login,logout
 import smtplib
 import re
@@ -244,15 +247,16 @@ def addDoctors(request):
 def addPatients(request):
 	if request.user.is_authenticated():
 		if request.method == "POST":
+			print request.POST['dateofbirth']
 			name = request.POST['patientname']
 			dob = request.POST['dateofbirth']
 			age = request.POST['age']
-			gender = request.POST['select']
+			gender = request.POST['gender']
 			phone = request.POST['phone']
 			email = request.POST['email']
 			address = request.POST['address']
 			bloodgrp = request.POST['selectbg']
-			doctor = request.POST['selectdoctor']
+			# doctor = request.POST['selectdoctor']
 			#photo = request.POST['']			
 
 			hash = hashlib.sha1()
@@ -265,21 +269,20 @@ def addPatients(request):
 			print a
 			user=User.objects.create(username=email,password=tp)
 			user.save()
-
-			pat = patient.objects.create(p_name = name,
-								p_email = email,
-								p_phone_no = phone,
-								p_address = address,
-								p_gender = gender,
-								# p_dateofbirth = dob,
+			pat = patient.objects.create(
+								p_name = name,
 								p_age = age,
+								p_gender = gender,
+								p_phone_no = phone,
+								p_email = email,
+								p_address = address,
+								p_dateofbirth = dob,
 								p_bloodgrp = bloodgrp,
-								p_doctor = doctor,
+								# p_doctor = doctor,
 								user_id = user,
-								p_hospital_id = a)
+								hospital_id = a)
 			pat.save()
-
-			utype = user_type.objects.create(user_detail=request.user,types=3)
+			utype = user_type.objects.create(user_detail=user,types=3)
 			utype.save()
       
 
@@ -315,4 +318,125 @@ def addPatients(request):
 
 
 
-	
+def addLabHead(request):
+	if request.user.is_authenticated():
+		if request.method == 'POST':	
+			name = request.POST['lhname']
+			age = request.POST['age']
+			gender = request.POST['gender']
+			phone = request.POST['phone']
+			email = request.POST['email']
+			address = request.POST['address']
+			salary = request.POST['salary']
+			hash = hashlib.sha1()
+			now = datetime.datetime.now()
+			hash.update(str(now)+email+'game_of_thrones')
+			tp=hash.hexdigest()			
+			a = hospital.objects.get(user_id = request.user)
+			user=User.objects.create(username=email,password=tp)
+			user.save()
+			lh = labhead.objects.create(
+								l_name = name,
+								l_age = age,
+								l_gender = gender,
+								l_number = phone,
+								l_email = email,
+								l_salary = salary,
+								user_id = user,
+								hospital_id = a)
+			lh.save()
+			utype = user_type.objects.create(user_detail=user,types=5)
+			utype.save()
+			# fromaddr=usermail
+			# toaddr=email
+			# msg=MIMEMultipart()
+			# msg['From']=fromaddr
+			# msg['To']=toaddr
+			# msg['Subject']='Confirmational Email'
+			# domain = request.get_host()
+			# scheme = request.is_secure() and "https" or "http"
+			# body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
+			# part1 = MIMEText(body, 'plain')
+			# msg.attach(MIMEText(body, 'plain'))
+			# server = smtplib.SMTP('smtp.gmail.com', 587)
+			# server.starttls()
+			# server.login(fromaddr, upassword)
+			# text = msg.as_string()
+			# server.sendmail(fromaddr, toaddr, text)
+			# server.quit()
+			return HttpResponse('Check your mail box to confirm')
+		else:
+			a = hospital.objects.get(user_id = request.user)
+			context = {
+			"hos_details":a
+			}
+			return render(request,'addLabHead.html',context)	
+
+def addCashier(request):
+	if request.user.is_authenticated():
+		if request.method == 'POST':	
+			name = request.POST['lhname']
+			age = request.POST['age']
+			gender = request.POST['gender']
+			phone = request.POST['phone']
+			email = request.POST['email']
+			address = request.POST['address']
+			salary = request.POST['salary']
+			hash = hashlib.sha1()
+			now = datetime.datetime.now()
+			hash.update(str(now)+email+'game_of_thrones')
+			tp=hash.hexdigest()			
+			a = hospital.objects.get(user_id = request.user)
+			user=User.objects.create(username=email,password=tp)
+			user.save()
+			c = cashier.objects.create(
+								c_name = name,
+								c_age = age,
+								c_gender = gender,
+								c_number = phone,
+								c_email = email,
+								c_salary = salary,
+								user_id = user,
+								hospital_id = a)
+			c.save()
+			utype = user_type.objects.create(user_detail=user,types=4)
+			utype.save()
+			# fromaddr=usermail
+			# toaddr=email
+			# msg=MIMEMultipart()
+			# msg['From']=fromaddr
+			# msg['To']=toaddr
+			# msg['Subject']='Confirmational Email'
+			# domain = request.get_host()
+			# scheme = request.is_secure() and "https" or "http"
+			# body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
+			# part1 = MIMEText(body, 'plain')
+			# msg.attach(MIMEText(body, 'plain'))
+			# server = smtplib.SMTP('smtp.gmail.com', 587)
+			# server.starttls()
+			# server.login(fromaddr, upassword)
+			# text = msg.as_string()
+			# server.sendmail(fromaddr, toaddr, text)
+			# server.quit()
+			return HttpResponse('Check your mail box to confirm')
+		else:
+			a = hospital.objects.get(user_id = request.user)
+			context = {
+			"hos_details":a
+			}
+			return render(request,'addLabHead.html',context)	
+
+def all_patients(request):
+	patients = patient.objects.all()
+	context = {
+		'patients' : patients
+	}
+	return render(request, 'all_patients.html', context)
+
+def all_doctors(request):
+	doctors = doctor.objects.all()
+	context = {
+		'doctors' : doctors
+	}
+	return render(request, 'all_doctors.html', context)
+

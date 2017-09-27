@@ -23,6 +23,8 @@ urlpatterns = [
     url(r'^', include('hospital_reg.urls')),
     url(r'^', include('doctor.urls')),
     url(r'^', include('patient.urls')),
+    url(r'^', include('labhead.urls')),
+    url(r'^', include('cashier.urls')),
     
     
 ]
