@@ -40,9 +40,9 @@ def login_site(request):
 			if user_type.objects.get(user_detail = request.user).types == 3:
 				return redirect('/patientHome/')
 			if user_type.objects.get(user_detail = request.user).types == 4:
-				return HttpResponse("You are a Cashier")
+				return HttpResponse("You are a labhead")
 			if user_type.objects.get(user_detail = request.user).types == 5:
-				return HttpResponse("You are a Lab Head")				
+				return HttpResponse("You are a cashier")				
 		else:
 			context = {}
 			context['error'] = "Wrong username or password"
@@ -345,7 +345,7 @@ def addLabHead(request):
 								user_id = user,
 								hospital_id = a)
 			lh.save()
-			utype = user_type.objects.create(user_detail=user,types=5)
+			utype = user_type.objects.create(user_detail=user,types=4)
 			utype.save()
 			# fromaddr=usermail
 			# toaddr=email
@@ -399,7 +399,7 @@ def addCashier(request):
 								user_id = user,
 								hospital_id = a)
 			c.save()
-			utype = user_type.objects.create(user_detail=user,types=4)
+			utype = user_type.objects.create(user_detail=user,types=5)
 			utype.save()
 			# fromaddr=usermail
 			# toaddr=email
