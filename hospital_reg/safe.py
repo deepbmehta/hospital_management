@@ -20,4 +20,6 @@ upassword = "deepgaurav"
 # auth token = 3a79b55de825e098bfe3ea0310da0fe9
 
 # vidyo.io
-# password = Deepgaurav1997
+# # password = Deepgaurav1997
+# Application ID: 8a64fc.vidyo.io
+# Developer Key: 7d3639cd34fb406d9921773c9b3dfa61
