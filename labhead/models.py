@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from hospital_reg.models import hospital
 from doctor.models import doctor
+from patient.models import patient
 # Create your models here.
 
 class labhead(models.Model):
@@ -18,3 +19,11 @@ class labhead(models.Model):
 	user_id = models.ForeignKey(User)
 	def __str__(self):
 		return self.l_name
+
+class reports(models.Model):
+	p_id = models.ForeignKey(patient,on_delete = models.CASCADE)
+	report = models.FileField(upload_to='reports/')
+
+
+
+		

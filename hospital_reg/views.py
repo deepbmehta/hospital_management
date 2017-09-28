@@ -40,7 +40,7 @@ def login_site(request):
 			if user_type.objects.get(user_detail = request.user).types == 3:
 				return redirect('/patientHome/')
 			if user_type.objects.get(user_detail = request.user).types == 4:
-				return HttpResponse("You are a labhead")
+				return redirect('/labHome/')
 			if user_type.objects.get(user_detail = request.user).types == 5:
 				return HttpResponse("You are a cashier")				
 		else:
