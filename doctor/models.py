@@ -17,6 +17,8 @@ class doctor(models.Model):
 	d_gender = models.CharField(max_length = 10)
 	user_id = models.ForeignKey(User)
 	d_hospital_id = models.ForeignKey(hospital, on_delete = models.CASCADE)
+	profile_pic = models.ImageField(upload_to='doctor_profile_pics/',null=True, blank=True)
+
 
 	def __str__(self):
 		return self.d_name

@@ -18,6 +18,8 @@ class patient(models.Model):
 	hospital_id = models.ForeignKey(hospital,on_delete = models.CASCADE)
 	doctor_id = models.ManyToManyField(doctor)
 	bill_amt = models.BigIntegerField(null=True, blank=True)
+	profile_pic = models.ImageField(upload_to='patient_profile_pics/',null=True, blank=True)
+
 
 	def __str__(self):
 		return self.p_name

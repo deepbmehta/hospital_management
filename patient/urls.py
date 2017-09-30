@@ -1,5 +1,7 @@
 from django.conf.urls import url
 from patient import views
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
 	url(r'^search/', views.search),	
 	url(r'^appointment/', views.appointment),	
@@ -11,3 +13,8 @@ urlpatterns = [
 
 	
 ]
+
+if settings.DEBUG:
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+	

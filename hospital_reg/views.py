@@ -194,6 +194,8 @@ def addDoctors(request):
 			workexp = request.POST['workexp']
 			degree = request.POST['degree']
 			salary = request.POST['salary']
+			photo = request.FILES['profile_pic']
+
 			
 
 			hash = hashlib.sha1()
@@ -207,7 +209,7 @@ def addDoctors(request):
 			user=User.objects.create(username=email,password=tp)
 			user.save()
 
-			doc = doctor.objects.create(d_name = name,d_email = email,d_phone_no = phone,d_address = address,d_spec = speciality,d_work_exp = workexp,d_degree = degree,d_salary = salary,d_gender = gender,user_id = user,d_hospital_id = a)
+			doc = doctor.objects.create(d_name = name,d_email = email,d_phone_no = phone,d_address = address,d_spec = speciality,d_work_exp = workexp,d_degree = degree,d_salary = salary,d_gender = gender,user_id = user,d_hospital_id = a,profile_pic = photo)
 			doc.save()
 
 			utype = user_type.objects.create(user_detail=user,types=2)
@@ -257,7 +259,7 @@ def addPatients(request):
 			address = request.POST['address']
 			bloodgrp = request.POST['selectbg']
 			# doctor = request.POST['selectdoctor']
-			#photo = request.POST['']			
+			photo = request.FILES['profile_pic']			
 
 			hash = hashlib.sha1()
 			now = datetime.datetime.now()
@@ -280,7 +282,8 @@ def addPatients(request):
 								p_bloodgrp = bloodgrp,
 								# p_doctor = doctor,
 								user_id = user,
-								hospital_id = a)
+								hospital_id = a,
+								profile_pic = photo)
 			pat.save()
 			utype = user_type.objects.create(user_detail=user,types=3)
 			utype.save()
