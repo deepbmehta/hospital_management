@@ -8,6 +8,9 @@ from django.contrib.auth.models import User
 from hospital_reg.models import *
 from patient.models import *
 from doctor.models import *
+from labhead.models import *
+from cashier.models import *
+
 
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -62,8 +65,17 @@ def bloodBank(request):
 
 
 def payment(request):
-	return render(request,'payment.html')	
-
+	if request.user.is_authenticated():
+		p = patient.objects.get(user_id = request.user)
+		print p
+		c = invoice.objects.get(p_id = p)
+		print c
+		context = {
+		"invoice":c
+		}
+		return render(request,'payment.html',context)	
+	else:
+		return redirect('/login/')	
 
 def patientHome(request):
 	if request.user.is_authenticated():
@@ -95,4 +107,16 @@ def chat(request):
 	}
 	return render(request,'chat.html',context)
 
+def report(request):
+	if request.user.is_authenticated():
+		p = patient.objects.get(user_id = request.user)
+		print p
+		
+		rep = reports.objects.filter(p_id = p)
+		context = {
+		"reports":rep
+		}
+		return render(request,'reports.html',context)
+	else:
+		return redirect('/login/')	
 

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from hospital_reg.models import hospital
 from doctor.models import doctor
+from patient.models import patient
 # Create your models here.
 
 class cashier(models.Model):
@@ -18,3 +19,11 @@ class cashier(models.Model):
 	user_id = models.ForeignKey(User)
 	def __str__(self):
 		return self.c_name
+
+
+class invoice(models.Model):
+	p_id = models.ForeignKey(patient,on_delete = models.CASCADE)
+	i_amount = models.IntegerField()
+	bills = models.FileField(upload_to='invoices/')
+
+

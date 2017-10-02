@@ -42,7 +42,8 @@ def login_site(request):
 			if user_type.objects.get(user_detail = request.user).types == 4:
 				return redirect('/labHome/')
 			if user_type.objects.get(user_detail = request.user).types == 5:
-				return HttpResponse("You are a cashier")				
+				return redirect('/cashierHome/')
+								
 		else:
 			context = {}
 			context['error'] = "Wrong username or password"

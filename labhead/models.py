@@ -22,6 +22,7 @@ class labhead(models.Model):
 
 class reports(models.Model):
 	p_id = models.ForeignKey(patient,on_delete = models.CASCADE)
+	r_title = models.CharField(max_length = 100)
 	report = models.FileField(upload_to='reports/')
 
 

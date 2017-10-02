@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html>
+{% extends 'basep.html' %}
+
+{% block body_block %}
 <head>
 <meta name="viewport" content="width=device-width">
 	<title></title>
 </head>
 <body>
-
+    <div>
+        {{invoice.i_amount}}
+    </div>
+    
 
 
 
@@ -13,9 +17,10 @@
 <form action="/purchase" method="POST">
 <!-- Note that the amount is in paise = 50 INR -->
 <script
+
     src="https://checkout.razorpay.com/v1/checkout.js"
     data-key="rzp_test_PhAAO4D8oLBBxX"
-    data-amount="5000"
+    data-amount="{{invoice.i_amount}}"
     data-buttontext="Pay with Razorpay"
     data-name="Merchant Name"
     data-description="Purchase Description"
@@ -27,6 +32,9 @@
 <input type="hidden" value="Hidden Element" name="hidden">
 </form>
 
+<script type="text/javascript">
+    console.log({{invoice.i_amount}});
 
+</script>
 </body>
-</html>
+{% endblock %}

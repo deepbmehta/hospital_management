@@ -1,0 +1,9 @@
+{% extends 'basep.html' %}
+{% block body_block  %}
+<div>
+	{% for i in reports %}
+	<a href="/media/{{i.report}}">PDF</a>
+	{% endfor %}
+	</div>
+
+{% endblock %}

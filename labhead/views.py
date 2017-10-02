@@ -30,11 +30,12 @@ def upload(request):
 	if request.method == 'POST':
 		us = request.POST['user_id']
 		file = request.FILES['report']
+		title = request.POST['title']
 		pa = patient.objects.get(id = us)
 		print pa
 
 
-		re = reports.objects.create(p_id = pa,report = file)
+		re = reports.objects.create(p_id = pa,r_title = title,report = file)
 		return HttpResponse("dasdsa")
 	else:
 		pass

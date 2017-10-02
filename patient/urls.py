@@ -9,6 +9,7 @@ urlpatterns = [
 	url(r'^payment/', views.payment),
 	url(r'^patientHome/', views.patientHome),
 	url(r'^chat/', views.chat),
+	url(r'^reports/', views.report),
 
 
 	
