@@ -259,7 +259,9 @@ def addPatients(request):
 			email = request.POST['email']
 			address = request.POST['address']
 			bloodgrp = request.POST['selectbg']
-			# doctor = request.POST['selectdoctor']
+			doc = request.POST.getlist('doctor[]')
+			print "asdasdas",doc
+
 			photo = request.FILES['profile_pic']			
 
 			hash = hashlib.sha1()
@@ -285,6 +287,9 @@ def addPatients(request):
 								user_id = user,
 								hospital_id = a,
 								profile_pic = photo)
+			for i in doc:
+				d = doctor.objects.get(id = i)
+				pat.doctor_id.add(d)
 			pat.save()
 			utype = user_type.objects.create(user_detail=user,types=3)
 			utype.save()
@@ -314,8 +319,10 @@ def addPatients(request):
 		else:
 			a = hospital.objects.get(user_id = request.user)
 			print a
+			doc = doctor.objects.filter(d_hospital_id = a)
 			context = {
-			"hos_details":a
+			"hos_details":a,
+			"doctors" : doc
 			}
 
 			return render(request,'addPatients.html',context)	
