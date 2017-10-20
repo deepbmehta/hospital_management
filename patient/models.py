@@ -23,3 +23,13 @@ class patient(models.Model):
 
 	def __str__(self):
 		return self.p_name
+
+class appointment(models.Model):
+	date_of_appointment = models.CharField(max_length = 100)
+	from_time = models.CharField(max_length = 100)
+	to_time = models.CharField(max_length = 100)
+	cons_doctor = models.ForeignKey(doctor,on_delete = models.CASCADE)
+	condition = models.CharField(max_length = 200)	
+	note = models.CharField(max_length = 500,null=True, blank=True)
+	book_patient = models.ForeignKey(patient,on_delete = models.CASCADE)
+	confirm = models.BooleanField(default=False)

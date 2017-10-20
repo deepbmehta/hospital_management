@@ -36,7 +36,7 @@ def login_site(request):
 			if user_type.objects.get(user_detail = request.user).types == 1:
 				return redirect('/hospitalHome/')
 			if user_type.objects.get(user_detail = request.user).types == 2:
-				return HttpResponse("You are a Doctor")
+				return redirect("/docHome/")
 			if user_type.objects.get(user_detail = request.user).types == 3:
 				return redirect('/patientHome/')
 			if user_type.objects.get(user_detail = request.user).types == 4:

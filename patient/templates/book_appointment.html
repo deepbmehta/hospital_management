@@ -1,0 +1,115 @@
+{% extends 'basep.html' %}
+
+
+{% block body_block %}
+
+                    <div class="page-bar">
+                        <div class="page-title-breadcrumb">
+                            <div class=" pull-left">
+                                <div class="page-title">Book Appointment</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card card-topline-yellow">
+                                <div class="card-head">
+                                    <header></header>
+                                </div>
+                                <div class="card-body" id="bar-parent">
+                                    <form action="/book_appointment/" id="form_sample_1" class="form-horizontal" method="POST">
+                                    	{% csrf_token %}
+                                        <div class="form-body">
+                                        	
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Date Of Appointment
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <input class="form-control input-height" size="16" placeholder="date of appointment" type="text" value="" name="dateofappointment">
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                            <input type="hidden" id="dtp_input2" value="" />
+                                                </div>
+                                            </div>
+                                              <div class="form-group">
+                                            <label class="control-label col-md-3">From</label>
+                                            <div class="col-md-5">
+	                                            <div class="row">
+	                                            	<div class="col-md-5">
+		                                                <div class="input-group bootstrap-timepicker timepicker">
+		                                                    <input id="timepicker1" type="text" class="form-control input-height" name="fromtime">
+		                                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+		                                                </div>
+		                                            </div>
+		                                             <label class="control-label small-label col-md-2">To</label>
+		                                            <div class="col-md-5">
+		                                                <div class="input-group bootstrap-timepicker timepicker">
+		                                                    <input id="timepicker3" type="text" class="form-control input-height" name="totime">
+		                                                    <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+		                                                </div>
+		                                            </div>
+	                                            </div>
+                                            </div>
+                                        </div>
+                                            
+                                           
+                                            
+                                            
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Consulting Doctor
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <select class="form-control input-height" name="doctor">
+                                                        <option value="">Select...</option>
+                                                        {% for i in doc_list %}
+                                                        <option value="{{i.id}}">{{i.d_name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">Injury/Condition
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <input type="text" placeholder="Injury/Condition" class="form-control input-height" name="condition" />
+                                                </div>
+                                            </div>
+                                            
+                                            
+											<div class="form-group">
+												<label class="control-label col-md-3">Note 
+												</label>
+												<div class="col-md-5">
+													<textarea class="form-control-textarea" placeholder="note" rows="5" name="note"></textarea>
+												</div>
+											</div>
+										</div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button type="submit" class="btn btn-info">Submit</button>
+                                                    <button type="button" class="btn btn-info">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               
+            
+
+
+
+
+
+
+
+{% endblock %}

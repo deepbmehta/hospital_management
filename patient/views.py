@@ -10,6 +10,7 @@ from patient.models import *
 from doctor.models import *
 from labhead.models import *
 from cashier.models import *
+from patient.models import appointment
 
 
 
@@ -34,8 +35,7 @@ def search(request):
 	else:		
 		return render(request,'search.html')
 
-def appointment(request):
-	return render(request, 'appointment.html')
+
 
 def bloodBank(request):
 	if request.user.is_authenticated():
@@ -119,4 +119,58 @@ def report(request):
 		return render(request,'reports.html',context)
 	else:
 		return redirect('/login/')	
+
+
+def book_app(request):
+	if request.user.is_authenticated():
+		if user_type.objects.get(user_detail = request.user).types == 3:
+			p = patient.objects.get(user_id = request.user)
+			print p
+			doc = doctor.objects.filter(d_hospital_id = p.hospital_id)
+			print doc
+			if request.method == 'POST':
+				date = request.POST['dateofappointment']
+				fromtime = request.POST['fromtime']
+				totime = request.POST['totime']
+				cons_doc = doctor.objects.get(id = request.POST['doctor'])
+				cond = request.POST['condition']
+				note = request.POST['note']
+
+
+				print date,fromtime,totime,cons_doc,cond,note
+				 
+				appo = appointment.objects.create(date_of_appointment = date,
+												from_time = fromtime,
+												to_time = totime,
+												cons_doctor = cons_doc,
+												condition = cond,
+												note = note,
+												book_patient = p)
+				appo.save()
+				return redirect("/all_appointments/")
+
+			context = {
+			"p_details":p,
+			"doc_list":doc
+
+			}
+	return render(request,'book_appointment.html',context)
+
+
+
+def all_appointments(request):
+	if request.user.is_authenticated():
+		if user_type.objects.get(user_detail = request.user).types == 3:
+			p = patient.objects.get(user_id = request.user)
+			print p
+			app = appointment.objects.filter(book_patient = p)
+			print app
+
+
+			context = {
+			"p_details":p,
+			"app":app
+			}
+			return render(request,'all_appointments.html',context)
+
 

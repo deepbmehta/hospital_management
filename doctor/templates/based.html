@@ -28,9 +28,11 @@
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'assets/css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css" />
-    
+
     <!-- favicon -->
     <link rel="shortcut icon" href="{% static 'assets/imgfavicon.ico" /> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 </head>
 <!-- END HEAD -->
 <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md">
@@ -329,22 +331,9 @@
                                 </ul>
                             </li>
                             <li class="nav-item  ">
-                                <a href="#" class="nav-link nav-toggle"><i class="fa fa-book"></i> 
-                                <span class="title">Appointment</span><span class="arrow"></span></a>
-                                <ul class="sub-menu">
-                                    <li class="nav-item  ">
-                                        <a href="schedule.html" class="nav-link "> <span class="title">Doctor Schedule</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item  ">
-                                        <a href="book_appointment.html" class="nav-link "> <span class="title">Book Appointment</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item  ">
-                                        <a href="view_appointment.html" class="nav-link "> <span class="title">View All Appointment</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <a href="/confirm_appointments/" class="nav-link nav-toggle"><i class="fa fa-book"></i> 
+                                <span class="title">Appointment</span></a>
+                                
                             </li>
                             <li class="nav-item  ">
                                 <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
