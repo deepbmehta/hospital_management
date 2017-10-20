@@ -1,9 +1,40 @@
 {% extends 'basep.html' %}
 {% block body_block  %}
-<div>
-	{% for i in reports %}
-	<a href="/media/{{i.report}}">PDF</a>
-	{% endfor %}
+
+<div class="page-bar">
+	<div class="page-title-breadcrumb">
+		<div class=" pull-left">
+			<div class="page-title">Reports </div>
+		</div>
+		
 	</div>
+</div>
+
+
+
+
+
+
+<div class="container" style="width:100%;">
+	<div class="row">
+		{% for i in reports %}
+		<div class="col-sm-2 col-md-3 col-lg-3" style="text-align: center">                    
+			<div class="well" style="padding: 0.5em;height: 200px;text-align: center">
+				<h2>{{i.r_title}}</h2>
+				
+				
+				<a href="/media/{{i.report}}"><div class="col-md-4" style="text-align: center;margin-top: 20px;margin-left: 25px;" >
+					<span class="label label-success" style="font-size: 10px; padding: 1.0em;text-align: center;">Click here to view</span>     
+				</div></a>
+				
+				
+				
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+
 
 {% endblock %}

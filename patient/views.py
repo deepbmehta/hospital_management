@@ -17,23 +17,40 @@ from patient.models import appointment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def search(request):
-	if request.method == 'POST':
-		name = request.POST['name']
-		types = request.POST['type']
-		url = "https://api.betterdoctor.com/2016-03-01/doctors?first_name="+name+"&specialty_uid="+types+"&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&sort=full-name-asc&skip=0&limit=10&user_key=056686b82961deed0c023cc2de74ce3f"
-		response = urllib.urlopen(url)
-		data = json.loads(response.read())
-		print data['data'][0]['insurances']
-		for item in data['data']:
-			print "Fsdfsdfsdfsdfsdfsdf"
-			del item['insurances']
-			print item
-		context = {
-		"data":data['data']
-		} 
-		return render(request,'search.html',context)
-	else:		
-		return render(request,'search.html')
+	if request.user.is_authenticated():
+		if user_type.objects.get(user_detail = request.user).types == 3:
+			p = patient.objects.get(user_id = request.user)
+
+
+
+			if request.method == 'POST':
+				name = request.POST['name']
+				types = request.POST['type']
+				url = "https://api.betterdoctor.com/2016-03-01/doctors?first_name="+name+"&specialty_uid="+types+"&location=37.773%2C-122.413%2C100&user_location=37.773%2C-122.413&sort=full-name-asc&skip=0&limit=10&user_key=056686b82961deed0c023cc2de74ce3f"
+				response = urllib.urlopen(url)
+				data = json.loads(response.read())
+				print data['data'][0]['insurances']
+				for item in data['data']:
+					print "Fsdfsdfsdfsdfsdfsdf"
+					del item['insurances']
+					print item
+				
+					
+				context = {
+				"data":data['data'],
+				"p_details":p,
+
+				"v":True
+				} 
+				return render(request,'search.html',context)
+			else:		
+				context = {
+				
+				"p_details":p,
+
+				"v":False
+				}
+				return render(request,'search.html',context)
 
 
 
@@ -68,9 +85,10 @@ def payment(request):
 	if request.user.is_authenticated():
 		p = patient.objects.get(user_id = request.user)
 		print p
-		c = invoice.objects.get(p_id = p)
+		c = invoice.objects.filter(p_id = p)
 		print c
 		context = {
+		"p_details":p,
 		"invoice":c
 		}
 		return render(request,'payment.html',context)	
@@ -114,6 +132,7 @@ def report(request):
 		
 		rep = reports.objects.filter(p_id = p)
 		context = {
+		"p_details":p,
 		"reports":rep
 		}
 		return render(request,'reports.html',context)

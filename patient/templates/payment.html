@@ -5,36 +5,67 @@
 <meta name="viewport" content="width=device-width">
 	<title></title>
 </head>
-<body>
-    <div>
+
+    <!--<div>
         {{invoice.i_amount}}
-    </div>
+    </div> -->
     
+<div class="page-bar">
+    <div class="page-title-breadcrumb">
+        <div class=" pull-left">
+            <div class="page-title">Invoices </div>
+        </div>
+        
+    </div>
+</div>
 
 
-
-
-<form action="/purchase" method="POST">
+<div class="container" style="width:100%;">
+    <div class="row">
+        {% for i in invoice %}
+        <div class="col-sm-2 col-md-3 col-lg-3" style="text-align: center">                    
+            <div class="well" style="padding: 0.5em;height: 200px;text-align: center">
+                <h2>{{i.i_amount}}</h2>
+                
+                
+                <a href="/media/{{i.bills}}"><div class="col-md-4" style="text-align: center;margin-top: 20px;margin-left: 25px;" >
+                    <span class="label label-success" style="font-size: 10px; padding: 1.0em;text-align: center;">Click here to view</span>     
+                </div></a>
+                <div style="text-align: center;margin-top: 75px;margin-left: 5px;" >
+                <form action="/purchase" method="POST">
 <!-- Note that the amount is in paise = 50 INR -->
 <script
+    
 
     src="https://checkout.razorpay.com/v1/checkout.js"
     data-key="rzp_test_PhAAO4D8oLBBxX"
-    data-amount="{{invoice.i_amount}}"
-    data-buttontext="Pay with Razorpay"
+    data-amount={{i.i_amount}}
+    data-buttontext="Pay Online"
     data-name="Merchant Name"
     data-description="Purchase Description"
     data-image="https://your-awesome-site.com/your_logo.jpg"
-    data-prefill.name="Harshil Mathur"
-    data-prefill.email="support@razorpay.com"
-    data-theme.color="#F37254"
+    data-prefill.name="{{i.p_id.p_name}}"
+    data-prefill.email="{{i.p_id.hospital_id.hos_email}}"
+    data-theme.color="#ccc"
 ></script>
 <input type="hidden" value="Hidden Element" name="hidden">
 </form>
+</div>
+                
+                
+                
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
 
 <script type="text/javascript">
     console.log({{invoice.i_amount}});
 
 </script>
-</body>
+
 {% endblock %}
