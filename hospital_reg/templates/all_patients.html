@@ -44,16 +44,12 @@
                                     <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group">
-                                                <button id="addRow" class="btn btn-info">
-                                                    Add New <i class="fa fa-plus"></i>
-                                                </button>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                             <div class="btn-group pull-right">
-                                                <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                                    <i class="fa fa-angle-down"></i>
-                                                </button>
+                                                
                                                 <ul class="dropdown-menu pull-right">
                                                     <li>
                                                         <a href="javascript:;">
@@ -91,7 +87,7 @@
                                         {% for patient in patients %}
                                             <tr class="odd gradeX">
                                                 <td class="patient-img">
-                                                        <img src="img/user/user1.svg" alt="">
+                                                        <img src="/media/{{patient.profile_pic}}" alt="">
                                                 </td>
                                                 <td>{{ patient.p_name }}</td>
                                                 <td class="center">{{ patient.p_gender }}</td>
@@ -128,7 +124,7 @@
                             <div class="card card-topline-aqua">
                                 <div class="card-body no-padding ">
                                     <div class="doctor-profile">
-                                            <img src="img/user/user10.svg" class="doctor-pic" alt=""> 
+                                            <img src="/media/{{p.profile_pic}}" class="doctor-pic" alt=""> 
                                         <div class="profile-usertitle">
                                             <div class="doctor-name">{{ p.p_name }}</div>
                                             <h5> Age : {{ p.p_age }}</h5>

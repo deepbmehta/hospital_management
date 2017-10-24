@@ -33,3 +33,4 @@ class appointment(models.Model):
 	note = models.CharField(max_length = 500,null=True, blank=True)
 	book_patient = models.ForeignKey(patient,on_delete = models.CASCADE)
 	confirm = models.BooleanField(default=False)
+	hospital_id = models.ForeignKey(hospital,on_delete = models.CASCADE)

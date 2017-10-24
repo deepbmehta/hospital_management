@@ -164,7 +164,8 @@ def book_app(request):
 												cons_doctor = cons_doc,
 												condition = cond,
 												note = note,
-												book_patient = p)
+												book_patient = p,
+												hospital_id = p.hospital_id)
 				appo.save()
 				return redirect("/all_appointments/")
 
