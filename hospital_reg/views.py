@@ -173,9 +173,28 @@ def hos_reg_complete(request,p):
 def hospitalHome(request):
 	if request.user.is_authenticated():
 		a = hospital.objects.get(user_id = request.user)
+		tot_app = appointment.objects.filter(hospital_id = a).count()
+		app = appointment.objects.filter(hospital_id = a)
+
+		tot_patients = patient.objects.filter(hospital_id = a).count()
+		tot_doctors = doctor.objects.filter(d_hospital_id = a).count()
+		doc_list = doctor.objects.filter(d_hospital_id = a)
+
+		tot_earning = invoice.objects.filter(hospital_id = a)
+		print tot_app,tot_patients,tot_doctors,tot_earning
+		total = int(0)
+		for i in tot_earning:
+			total = total + i.i_amount
 		print a
+		print total
 		context = {
-		"hos_details":a
+		"hos_details":a,
+		"tot_patients":tot_patients,
+		"tot_doctors": tot_doctors,
+		"tot_app": tot_app,
+		"tot_earning": total,
+		"app":app,
+		"doc_list": doc_list
 		}
 
 		return render(request,'hospitalHome.html',context)
@@ -438,16 +457,24 @@ def addCashier(request):
 			return render(request,'addLabHead.html',context)	
 
 def all_patients(request):
-	patients = patient.objects.all()
-	context = {
-		'patients' : patients
-	}
+	if request.user.is_authenticated():
+		a = hospital.objects.get(user_id = request.user)
+		patients = patient.objects.filter(hospital_id = a)
+		context = {
+			"hos_details":a,
+			'patients' : patients
+		}
 	return render(request, 'all_patients.html', context)
 
 def all_doctors(request):
-	doctors = doctor.objects.all()
-	context = {
-		'doctors' : doctors
-	}
+	if request.user.is_authenticated():
+		a = hospital.objects.get(user_id = request.user)
+
+		doctors = doctor.objects.filter(d_hospital_id = a)
+		context = {
+			'doctors' : doctors,
+			"hos_details":a
+			
+		}
 	return render(request, 'all_doctors.html', context)
 

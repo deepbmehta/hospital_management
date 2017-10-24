@@ -28,6 +28,7 @@ def cashierHome(request):
 
 def makebill(request):
 	if request.method == 'POST':
+		ca = cashier.objects.get(user_id = request.user)
 		us = request.POST['user_id']
 		file = request.FILES['bill']
 		amount = request.POST['amount']
@@ -35,7 +36,7 @@ def makebill(request):
 		print pa
 
 
-		re = invoice.objects.create(p_id = pa,i_amount = amount,bills = file)
+		re = invoice.objects.create(p_id = pa,i_amount = amount,bills = file,hospital_id = ca.hospital_id)
 		return HttpResponse("Bill uploaded Successfully")
 	else:
 		pass
