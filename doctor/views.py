@@ -15,11 +15,75 @@ from hospital_reg.safe import usermail,upassword
 
 
 
+def reportdocview(request, d_id):
+	if request.user.is_authenticated():
+		if user_type.objects.get(user_detail = request.user).types == 2:
+			d = doctor.objects.get(user_id = request.user)
+			doc = doctor.objects.get(id=d_id)
+			h_id = doc.d_hospital_id
+			allp = patient.objects.filter(hospital_id=h_id)
+			dp = []
+			t = []
+			for p in allp:
+				for i in p.doctor_id.all():
+					if doc.id == i.id:
+						dp.append(p)
+			pallr = [[] for i in range(len(dp))]
+			i=0
+			for p in dp:
+				rep = reports.objects.filter(p_id = p)
+				pallr[i].append(rep)
+				i+=1
+			zipped = zip(dp,pallr)
+			context = {
+				"doc":d,
+				'zipped' : zipped,
+				'pallr' : pallr
+			}
+			return render(request, 'reportdocview.html', context)
+		else:
+			return HttpResponse("You are not allowed")
+	else:
+		return redirect('/login/')	
+
+def docpatients(request, d_id):
+	if request.user.is_authenticated():
+		if user_type.objects.get(user_detail = request.user).types == 2:
+			d = doctor.objects.get(user_id = request.user)
+			doc = doctor.objects.get(id=d_id)
+			h_id = doc.d_hospital_id
+			allp = patient.objects.filter(hospital_id=h_id)
+			dp = []
+			for p in allp:
+				for i in p.doctor_id.all():
+					if doc.id == i.id:
+						dp.append(p)
+			context = {
+				"doc":d,
+				'patients' : dp,
+			}
+			return render(request, 'docpatients.html', context)
+		else:
+			return HttpResponse("You are not allowed")
+	else:
+		return redirect('/login/')
+
 
 # Create your views here.
-
 def docHome(request):
-	return render(request,'docHome.html')
+	if request.user.is_authenticated():
+		if user_type.objects.get(user_detail = request.user).types == 2:
+			d = doctor.objects.get(user_id = request.user)
+			print d
+
+			context = {
+			"doc":d
+			}
+			return render(request,'docHome.html',context)
+		else:
+			return HttpResponse("You are not allowed")
+	else:
+		return redirect('/login/')
 
 
 def confirm_appointments(request):
