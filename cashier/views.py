@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 
 
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from hospital_reg.models import *
 from doctor.models import *
 from patient.models import *
@@ -15,15 +15,23 @@ from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def cashierHome(request):
+	if request.user.is_authenticated():
+		if user_type.objects.get(user_detail = request.user).types == 5:
+			
 	
-	lh = cashier.objects.get(user_id = request.user)
-	print lh
-	patientlist = patient.objects.filter(hospital_id = lh.hospital_id)
-	print patientlist
-	context = {
-	"patient" : patientlist 
-	}
-	return render(request, 'cashierHome.html',context)
+			lh = cashier.objects.get(user_id = request.user)
+			print lh
+			patientlist = patient.objects.filter(hospital_id = lh.hospital_id)
+			print patientlist
+			context = {
+				"patient" : patientlist,
+				"cashier" : lh
+			}
+			return render(request, 'cashierHome.html',context)
+		else:
+			return HttpResponse("Not allowed")
+	else:
+		return redirect('/login/')			
 
 
 def makebill(request):

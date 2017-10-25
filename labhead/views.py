@@ -15,15 +15,23 @@ from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def labHome(request):
+	if request.user.is_authenticated():
+		if user_type.objects.get(user_detail = request.user).types == 4:
 	
-	lh = labhead.objects.get(user_id = request.user)
-	print lh
-	patientlist = patient.objects.filter(hospital_id = lh.hospital_id)
-	print patientlist
-	context = {
-	"patient" : patientlist 
-	}
-	return render(request, 'labHome.html',context)
+			lh = labhead.objects.get(user_id = request.user)
+			print lh
+			patientlist = patient.objects.filter(hospital_id = lh.hospital_id)
+			print patientlist
+			context = {
+				"patient" : patientlist, 
+				"lh" : lh
+			}
+			return render(request, 'labHome.html',context)
+		else:
+			return HttpResponse("Not allowed")
+	else:
+		return redirect('/login/')			
+	
 
 
 def upload(request):
