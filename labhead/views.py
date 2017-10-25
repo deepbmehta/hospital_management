@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from hospital_reg.models import *
 from doctor.models import *
 from patient.models import *
@@ -44,7 +44,7 @@ def upload(request):
 
 
 		re = reports.objects.create(p_id = pa,r_title = title,report = file)
-		return HttpResponse("dasdsa")
+		return redirect('/labHome/')
 	else:
 		pass
 

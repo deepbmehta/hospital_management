@@ -1,0 +1,84 @@
+{% extends 'based.html' %}
+{% block body_block  %}
+
+<div class="page-bar">
+	<div class="page-title-breadcrumb">
+		<div class=" pull-left">
+			<div class="page-title">Reports </div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+
+
+
+<div class="container" style="width:100%;">
+	<div class="row">
+		{% for x,r in zipped %}
+		{% for j in r %}
+		<div class="row">
+		    <div class="col-md-12 col-sm-12">
+		        <div class="card  card-topline-yellow">
+		            <div class="card-head">
+		                <header>{{ x }}</header>
+		                <div class="tools">
+		                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
+		                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
+		                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
+		                </div>
+		            </div>
+		            <div class="card-body ">
+		              <div class="table-wrap">
+							<div class="table-responsive">
+								<table class="table display product-overview mb-30" id="support_table">
+									<thead>
+										<tr>
+											<th>No</th>
+											<th>Title</th>
+											<th>Report</th>
+											<th>Date Of Issue</th>
+											<th>Details</th>
+										</tr>
+									</thead>
+									<tbody>
+									{% for i in j %}
+										<tr>
+											<td>{{ forloop.counter }}</td>
+											<td>{{ i.r_title }}</td>
+											<td><a href="/media/{{i.report}}"><i class="fa fa-file" aria-hidden="true"></i> Click Here</a></td>
+											<td><!-- {{ i.created_date }} -->NOW</td>
+											<td><!-- {{ i.details }} -->Nothing much</td>
+										</tr>
+		 							{% endfor %}										
+									</tbody>
+								</table>
+							</div>
+						</div>	
+		            </div>
+		        </div>
+		    </div>
+                    </div>
+		{% endfor %}
+		{% endfor %}
+		<!-- <h1>{{ i.r_title }}</h1> -->
+		<!-- <div class="col-sm-2 col-md-3 col-lg-3" style="text-align: center">                    
+			<div class="well" style="padding: 0.5em;height: 200px;text-align: center">
+				<h2>{{i.r_title}}</h2>
+				
+				
+				<a href="/media/{{i.report}}"><div class="col-md-4" style="text-align: center;margin-top: 20px;margin-left: 25px;" >
+					<span class="label label-success" style="font-size: 10px; padding: 1.0em;text-align: center;">Click here to view</span>     
+				</div></a>				
+			</div>
+		</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+{% endblock %}
