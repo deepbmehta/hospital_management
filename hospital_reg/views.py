@@ -453,7 +453,7 @@ def addCashier(request):
 			a = hospital.objects.get(user_id = request.user)
 			context = {
 			"hos_details":a
-			}
+			}	
 			return render(request,'addLabHead.html',context)	
 
 def all_patients(request):

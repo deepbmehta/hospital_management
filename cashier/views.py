@@ -44,7 +44,7 @@ def makebill(request):
 		print pa
 
 
-		re = invoice.objects.create(p_id = pa,i_amount = amount,bills = file,hospital_id = ca.hospital_id)
+		re = invoice.objects.create(p_id = pa,i_amount = amount,bills = file,hospital_id = ca.hospital_id,raz_amt = int(amount*100))
 		return HttpResponse("Bill uploaded Successfully")
 	else:
 		pass

@@ -113,23 +113,23 @@ def confirm(request):
 	app.confirm = True
 	app.save()
 	print app.book_patient.p_email
-	# fromaddr=usermail
-	# toaddr=app.book_patient.p_email
-	# msg=MIMEMultipart()
-	# msg['From']=fromaddr
-	# msg['To']=toaddr
-	# msg['Subject']='Confirmation of Appointment'
-	# domain = request.get_host()
-	# scheme = request.is_secure() and "https" or "http"
-	# body = "Your Appointment is confirmed" 
-	# part1 = MIMEText(body, 'plain')
-	# msg.attach(MIMEText(body, 'plain'))
-	# server = smtplib.SMTP('smtp.gmail.com', 587)
-	# server.starttls()
-	# server.login(fromaddr, upassword)
-	# text = msg.as_string()
-	# server.sendmail(fromaddr, toaddr, text)
-	# server.quit()
+	fromaddr=usermail
+	toaddr=app.book_patient.p_email
+	msg=MIMEMultipart()
+	msg['From']=fromaddr
+	msg['To']=toaddr
+	msg['Subject']='Confirmation of Appointment'
+	domain = request.get_host()
+	scheme = request.is_secure() and "https" or "http"
+	body = "Your Appointment is confirmed" 
+	part1 = MIMEText(body, 'plain')
+	msg.attach(MIMEText(body, 'plain'))
+	server = smtplib.SMTP('smtp.gmail.com', 587)
+	server.starttls()
+	server.login(fromaddr, upassword)
+	text = msg.as_string()
+	server.sendmail(fromaddr, toaddr, text)
+	server.quit()
 
 	return JsonResponse({"success":"true"})
 
@@ -139,23 +139,23 @@ def delete_appointment(request):
 	a = json.loads(request.body)
 	print a['id']
 	app = appointment.objects.get(id = int(a['id']))
-	# fromaddr=usermail
-	# toaddr=app.book_patient.p_email
-	# msg=MIMEMultipart()
-	# msg['From']=fromaddr
-	# msg['To']=toaddr
-	# msg['Subject']='Cancelation of appointment '
-	# domain = request.get_host()
-	# scheme = request.is_secure() and "https" or "http"
-	# body = "Your Appointment is cancelled" 
-	# part1 = MIMEText(body, 'plain')
-	# msg.attach(MIMEText(body, 'plain'))
-	# server = smtplib.SMTP('smtp.gmail.com', 587)
-	# server.starttls()
-	# server.login(fromaddr, upassword)
-	# text = msg.as_string()
-	# server.sendmail(fromaddr, toaddr, text)
-	# server.quit()
+	fromaddr=usermail
+	toaddr=app.book_patient.p_email
+	msg=MIMEMultipart()
+	msg['From']=fromaddr
+	msg['To']=toaddr
+	msg['Subject']='Cancelation of appointment '
+	domain = request.get_host()
+	scheme = request.is_secure() and "https" or "http"
+	body = "Your Appointment is cancelled. Please Select another day and time" 
+	part1 = MIMEText(body, 'plain')
+	msg.attach(MIMEText(body, 'plain'))
+	server = smtplib.SMTP('smtp.gmail.com', 587)
+	server.starttls()
+	server.login(fromaddr, upassword)
+	text = msg.as_string()
+	server.sendmail(fromaddr, toaddr, text)
+	server.quit()
 	app.delete()
 	return JsonResponse({"success":"true"})
 

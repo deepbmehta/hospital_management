@@ -26,6 +26,7 @@ class invoice(models.Model):
 	i_amount = models.IntegerField()
 	bills = models.FileField(upload_to='invoices/')
 	hospital_id = models.ForeignKey(hospital,on_delete = models.CASCADE)
+	raz_amt = models.IntegerField(null = True,blank = True)
 	
 
 
