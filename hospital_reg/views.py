@@ -237,25 +237,25 @@ def addDoctors(request):
       
 
 
-			# fromaddr=usermail
-			# toaddr=email
-			# msg=MIMEMultipart()
-			# msg['From']=fromaddr
-			# msg['To']=toaddr
-			# msg['Subject']='Confirmational Email'
-			# domain = request.get_host()
-			# scheme = request.is_secure() and "https" or "http"
-			# body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
-			# part1 = MIMEText(body, 'plain')
-			# msg.attach(MIMEText(body, 'plain'))
-			# server = smtplib.SMTP('smtp.gmail.com', 587)
-			# server.starttls()
-			# server.login(fromaddr, upassword)
-			# text = msg.as_string()
-			# server.sendmail(fromaddr, toaddr, text)
-			# server.quit()
+			fromaddr=usermail
+			toaddr=email
+			msg=MIMEMultipart()
+			msg['From']=fromaddr
+			msg['To']=toaddr
+			msg['Subject']='Confirmational Email'
+			domain = request.get_host()
+			scheme = request.is_secure() and "https" or "http"
+			body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
+			part1 = MIMEText(body, 'plain')
+			msg.attach(MIMEText(body, 'plain'))
+			server = smtplib.SMTP('smtp.gmail.com', 587)
+			server.starttls()
+			server.login(fromaddr, upassword)
+			text = msg.as_string()
+			server.sendmail(fromaddr, toaddr, text)
+			server.quit()
 
-			return HttpResponse('Check your mail box to confirm')
+			return redirect('/all_doctors/')
 			
 		else:
 			a = hospital.objects.get(user_id = request.user)
@@ -315,25 +315,25 @@ def addPatients(request):
       
 
 
-			# fromaddr=usermail
-			# toaddr=email
-			# msg=MIMEMultipart()
-			# msg['From']=fromaddr
-			# msg['To']=toaddr
-			# msg['Subject']='Confirmational Email'
-			# domain = request.get_host()
-			# scheme = request.is_secure() and "https" or "http"
-			# body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
-			# part1 = MIMEText(body, 'plain')
-			# msg.attach(MIMEText(body, 'plain'))
-			# server = smtplib.SMTP('smtp.gmail.com', 587)
-			# server.starttls()
-			# server.login(fromaddr, upassword)
-			# text = msg.as_string()
-			# server.sendmail(fromaddr, toaddr, text)
-			# server.quit()
+			fromaddr=usermail
+			toaddr=email
+			msg=MIMEMultipart()
+			msg['From']=fromaddr
+			msg['To']=toaddr
+			msg['Subject']='Confirmational Email'
+			domain = request.get_host()
+			scheme = request.is_secure() and "https" or "http"
+			body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
+			part1 = MIMEText(body, 'plain')
+			msg.attach(MIMEText(body, 'plain'))
+			server = smtplib.SMTP('smtp.gmail.com', 587)
+			server.starttls()
+			server.login(fromaddr, upassword)
+			text = msg.as_string()
+			server.sendmail(fromaddr, toaddr, text)
+			server.quit()
 
-			return HttpResponse('Check your mail box to confirm')
+			return redirect('/all_patients/')
 			
 		else:
 			a = hospital.objects.get(user_id = request.user)
@@ -377,24 +377,24 @@ def addLabHead(request):
 			lh.save()
 			utype = user_type.objects.create(user_detail=user,types=4)
 			utype.save()
-			# fromaddr=usermail
-			# toaddr=email
-			# msg=MIMEMultipart()
-			# msg['From']=fromaddr
-			# msg['To']=toaddr
-			# msg['Subject']='Confirmational Email'
-			# domain = request.get_host()
-			# scheme = request.is_secure() and "https" or "http"
-			# body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
-			# part1 = MIMEText(body, 'plain')
-			# msg.attach(MIMEText(body, 'plain'))
-			# server = smtplib.SMTP('smtp.gmail.com', 587)
-			# server.starttls()
-			# server.login(fromaddr, upassword)
-			# text = msg.as_string()
-			# server.sendmail(fromaddr, toaddr, text)
-			# server.quit()
-			return HttpResponse('Check your mail box to confirm')
+			fromaddr=usermail
+			toaddr=email
+			msg=MIMEMultipart()
+			msg['From']=fromaddr
+			msg['To']=toaddr
+			msg['Subject']='Confirmational Email'
+			domain = request.get_host()
+			scheme = request.is_secure() and "https" or "http"
+			body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
+			part1 = MIMEText(body, 'plain')
+			msg.attach(MIMEText(body, 'plain'))
+			server = smtplib.SMTP('smtp.gmail.com', 587)
+			server.starttls()
+			server.login(fromaddr, upassword)
+			text = msg.as_string()
+			server.sendmail(fromaddr, toaddr, text)
+			server.quit()
+			return HttpResponse('Added Successfully')
 		else:
 			a = hospital.objects.get(user_id = request.user)
 			context = {
@@ -431,24 +431,24 @@ def addCashier(request):
 			c.save()
 			utype = user_type.objects.create(user_detail=user,types=5)
 			utype.save()
-			# fromaddr=usermail
-			# toaddr=email
-			# msg=MIMEMultipart()
-			# msg['From']=fromaddr
-			# msg['To']=toaddr
-			# msg['Subject']='Confirmational Email'
-			# domain = request.get_host()
-			# scheme = request.is_secure() and "https" or "http"
-			# body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
-			# part1 = MIMEText(body, 'plain')
-			# msg.attach(MIMEText(body, 'plain'))
-			# server = smtplib.SMTP('smtp.gmail.com', 587)
-			# server.starttls()
-			# server.login(fromaddr, upassword)
-			# text = msg.as_string()
-			# server.sendmail(fromaddr, toaddr, text)
-			# server.quit()
-			return HttpResponse('Check your mail box to confirm')
+			fromaddr=usermail
+			toaddr=email
+			msg=MIMEMultipart()
+			msg['From']=fromaddr
+			msg['To']=toaddr
+			msg['Subject']='Confirmational Email'
+			domain = request.get_host()
+			scheme = request.is_secure() and "https" or "http"
+			body = "Please Click On The Link To complete registration: {0}://{1}/{2}/changepass".format(scheme,domain,tp) 
+			part1 = MIMEText(body, 'plain')
+			msg.attach(MIMEText(body, 'plain'))
+			server = smtplib.SMTP('smtp.gmail.com', 587)
+			server.starttls()
+			server.login(fromaddr, upassword)
+			text = msg.as_string()
+			server.sendmail(fromaddr, toaddr, text)
+			server.quit()
+			return HttpResponse('Added Successfully')
 		else:
 			a = hospital.objects.get(user_id = request.user)
 			context = {
