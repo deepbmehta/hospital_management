@@ -39,11 +39,12 @@ def upload(request):
 		us = request.POST['user_id']
 		file = request.FILES['report']
 		title = request.POST['title']
+		details = request.POST['details']
 		pa = patient.objects.get(id = us)
 		print pa
 
 
-		re = reports.objects.create(p_id = pa,r_title = title,report = file)
+		re = reports.objects.create(p_id = pa,r_title = title,report = file, details = details)
 		return redirect('/labHome/')
 	else:
 		pass

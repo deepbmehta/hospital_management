@@ -49,8 +49,8 @@
 											<td>{{ forloop.counter }}</td>
 											<td>{{ i.r_title }}</td>
 											<td><a href="/media/{{i.report}}"><i class="fa fa-file" aria-hidden="true"></i> Click Here</a></td>
-											<td><!-- {{ i.created_date }} -->NOW</td>
-											<td><!-- {{ i.details }} -->Nothing much</td>
+											<td>{{ i.created_date }}<!-- NOW --></td>
+											<td>{{ i.details }}<!-- Nothing much --></td>
 										</tr>
 		 							{% endfor %}										
 									</tbody>

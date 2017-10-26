@@ -44,7 +44,7 @@
                                     <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                         <thead>
                                             <tr>
-                                                <th></th>
+                                                <th>Image</th>
                                                 <th> Name </th>
                                                 <th> Sex </th>
                                                 <th> Address </th>
@@ -60,7 +60,7 @@
                                         {% for patient in patients %}
                                             <tr class="odd gradeX">
                                                 <td class="patient-img">
-                                                        <img src="img/user/user1.svg" alt="">
+                                                        <img src="/media/{{patient.profile_pic}}" alt="">
                                                 </td>
                                                 <td>{{ patient.p_name }}</td>
                                                 <td class="center">{{ patient.p_gender }}</td>
@@ -89,7 +89,7 @@
                             <div class="card card-topline-aqua">
                                 <div class="card-body no-padding ">
                                     <div class="doctor-profile">
-                                            <img src="img/user/user10.svg" class="doctor-pic" alt=""> 
+                                            <img src="/media/{{p.profile_pic}}" class="doctor-pic" alt=""> 
                                         <div class="profile-usertitle">
                                             <div class="doctor-name">{{ p.p_name }}</div>
                                             <h5> Age : {{ p.p_age }}</h5>
