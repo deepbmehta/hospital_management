@@ -4,23 +4,23 @@
  <link href="{% static 'assets/js/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css' %}"/>
     
-	<!--bootstrap -->
+    <!--bootstrap -->
     <link href="{% static 'assets/js/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'assets/js/bootstrap-switch/css/bootstrap-switch.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'assets/js/bootstrap-datepicker/css/bootstrap-datepicker3.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'assets/js/bootstrap-timepicker/css/bootstrap-timepicker.min.css' %}" rel="stylesheet" media="screen">
     
-	<!-- dropzone -->
+    <!-- dropzone -->
     <link href="{% static 'assets/js/dropzone/dropzone.css' %}" rel="stylesheet" media="screen">
     
-	<!-- theme style -->
+    <!-- theme style -->
     <link href="{% static 'assets/css/theme_style.css' %}" rel="stylesheet" id="rt_style_components" type="text/css" />
     <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'assets/css/plugins.min.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'assets/css/formlayout.css' %}" rel="stylesheet" type="text/css" />
     <link href="{% static 'assets/css/responsive.css' %}" rel="stylesheet" type="text/css" />
-	
-	<!-- favicon -->
+    
+    <!-- favicon -->
     
 
                 
@@ -29,7 +29,13 @@
                             <div class=" pull-left">
                                 <div class="page-title">Add Doctor</div>
                             </div>
-                            
+                            <ol class="breadcrumb page-breadcrumb pull-right">
+                                <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                </li>
+                                <li><a class="parent-item" href="#">Doctors</a>&nbsp;<i class="fa fa-angle-right"></i>
+                                </li>
+                                <li class="active">Add Doctor</li>
+                            </ol>
                         </div>
                     </div>
                     <div class="row">
@@ -67,19 +73,19 @@
                                                             </div>
                                                         </div>
                                                         
-			                                            <div class="form-group">
-			                                                <label class="control-label col-md-3">Gender
-			                                                    <span class="required"> * </span>
-			                                                </label>
-			                                                <div class="col-md-5">
-			                                                    <select class="form-control input-height" name="gender" required>
-			                                                        <option value="">Select...</option>
-			                                                        <option value="Male">Male</option>
-			                                                        <option value="Female">Female</option>
-			                                                    </select>
-			                                                </div>
-			                                            </div>
-			                                            <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Gender
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <select class="form-control input-height" name="gender" required>
+                                                                    <option value="">Select...</option>
+                                                                    <option value="Male">Male</option>
+                                                                    <option value="Female">Female</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label class="control-label col-md-3">Speciality
                                                                 <span class="required"> * </span>
                                                             </label>
@@ -87,14 +93,14 @@
                                                                 <input type="text" class="form-control input-height" placeholder="speciality" name="speciality" required/>
                                                             </div>
                                                         </div>
-                                        				<div class="form-group">
-			                                                <label class="control-label col-md-3">Phone
-			                                                    <span class="required"> * </span>
-			                                                </label>
-			                                                <div class="col-md-5">
-			                                                    <input name="phone" type="text" class="form-control input-height" placeholder="phone" required/> </div>
-			                                            </div>
-			                                            <div class="form-group">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Phone
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <input name="phone" type="text" class="form-control input-height" placeholder="phone" required/> </div>
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label class="control-label col-md-3">Email
                                                                 <span class="required"> * </span>
                                                             </label>
@@ -102,14 +108,14 @@
                                                                 <input type="email" class="form-control input-height" placeholder="enter your email" name="email" required/>
                                                             </div>
                                                         </div>
-			                                            <div class="form-group">
-			                                                <label class="control-label col-md-3">Address
-			                                                    <span class="required"> * </span>
-			                                                </label>
-			                                                <div class="col-md-5">
-			                                                    <textarea name="address"  class="form-control-textarea" placeholder=" address" rows="5" required></textarea>
-			                                                </div>
-			                                            </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Address
+                                                                <span class="required"> * </span>
+                                                            </label>
+                                                            <div class="col-md-5">
+                                                                <textarea name="address"  class="form-control-textarea" placeholder=" address" rows="5" required></textarea>
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Upload Photo
                                                             </label>
@@ -181,12 +187,12 @@
     <script src="{% static 'assets/js/bootstrap-timepicker/js/bootstrap-timepicker.min.js' %}" type="text/javascript" charset="UTF-' %}8"></script>
     <script src="{% static 'assets/js/bootstrap-timepicker/js/bootstrap-timepicker-init.js' %}" type="text/javascript" charset="UTF-8"></script>
     
-	<!-- dropzone -->
+    <!-- dropzone -->
     <script src="{% static 'assets/js/dropzone/dropzone.js' %}" type="text/javascript"></script>
     <script src="{% static 'assets/js/dropzone/dropzone-call.js' %}" type="text/javascript"></script>
     
     <script src="{% static 'assets/js/jquery.slimscroll.js' %}"></script>
-    <!-- <script src="{% static 'assets/js/app.js' %}" type="text/javascript"></script> -->
+    <<!-- script src="{% static 'assets/js/app.js' %}" type="text/javascript"></script> -->
     <script src="{% static 'assets/js/form-wizard.js' %}" type="text/javascript"></script>
     <script src="{% static 'assets/js/layout.js' %}" type="text/javascript"></script>
     
