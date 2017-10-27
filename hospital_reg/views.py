@@ -454,7 +454,7 @@ def addCashier(request):
 			context = {
 			"hos_details":a
 			}	
-			return render(request,'addLabHead.html',context)	
+			return render(request,'addCashier.html',context)	
 
 def all_patients(request):
 	if request.user.is_authenticated():

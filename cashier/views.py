@@ -42,9 +42,10 @@ def makebill(request):
 		amount = request.POST['amount']
 		pa = patient.objects.get(id = us)
 		print pa
+		print int(amount)*100
 
 
-		re = invoice.objects.create(p_id = pa,i_amount = amount,bills = file,hospital_id = ca.hospital_id,raz_amt = int(amount*100))
+		re = invoice.objects.create(p_id = pa,i_amount = amount,bills = file,hospital_id = ca.hospital_id,raz_amt = int(amount)*100)
 		return HttpResponse("Bill uploaded Successfully")
 	else:
 		pass
