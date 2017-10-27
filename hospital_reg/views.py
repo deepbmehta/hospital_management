@@ -394,7 +394,7 @@ def addLabHead(request):
 			text = msg.as_string()
 			server.sendmail(fromaddr, toaddr, text)
 			server.quit()
-			return HttpResponse('Added Successfully')
+			return redirect('/hospitalHome/')
 		else:
 			a = hospital.objects.get(user_id = request.user)
 			context = {
@@ -448,7 +448,7 @@ def addCashier(request):
 			text = msg.as_string()
 			server.sendmail(fromaddr, toaddr, text)
 			server.quit()
-			return HttpResponse('Added Successfully')
+			return redirect('/hospitalHome/')			
 		else:
 			a = hospital.objects.get(user_id = request.user)
 			context = {
