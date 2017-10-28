@@ -100,3 +100,4 @@ ENV/
 
 migrations/
 media/
+db.sqlite3
