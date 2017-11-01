@@ -79,9 +79,23 @@ def docHome(request):
 		if user_type.objects.get(user_detail = request.user).types == 2:
 			d = doctor.objects.get(user_id = request.user)
 			print d
+			
+			h_id = d.d_hospital_id
+			allp = patient.objects.filter(hospital_id=h_id)
+			dp = []
+			for p in allp:
+				for i in p.doctor_id.all():
+					if d.id == i.id:
+						dp.append(p)
+			tot = int(0)			
+			for i in dp:
+				tot+=1
+			appo = appointment.objects.filter(cons_doctor = d).count()				
 
 			context = {
-			"doc":d
+			"doc":d,
+			"tot_pat": tot,
+			"tot_app": appo 
 			}
 			return render(request,'docHome.html',context)
 		else:
