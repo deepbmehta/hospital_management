@@ -12,6 +12,10 @@ from django.http import HttpResponse,JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from hospital_reg.safe import usermail,upassword
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+import smtplib
+
 
 
 
